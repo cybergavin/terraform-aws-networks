@@ -72,7 +72,7 @@ resource "aws_subnet" "subnet" {
 resource "aws_internet_gateway" "igw" {
   for_each = {
     for net-key, net in var.networks : net.vpc_name => net
-    if local.public_snets != []
+    if length(net.public_subnet_cidr) != 0
   }
 
   vpc_id = aws_vpc.vpc[each.key].id
@@ -88,7 +88,7 @@ resource "aws_internet_gateway" "igw" {
 resource "aws_route_table" "rtb-internet" {
   for_each = {
     for net-key, net in var.networks : net.vpc_name => net
-    if local.public_snets != []
+    if length(net.public_subnet_cidr) != 0
   }
   vpc_id = aws_vpc.vpc[each.key].id
   route {
