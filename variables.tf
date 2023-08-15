@@ -1,6 +1,6 @@
 variable "company" {
   type        = string
-  description = "(Required) Name of your organization or company or account alias for use in tag keys. "
+  description = "(Optional) Name of your organization or company or account alias for use in tag keys. "
   default     = "mycorp"
 }
 variable "global-tags" {
@@ -11,5 +11,4 @@ variable "global-tags" {
 variable "networks" {
   type        = list(any)
   description = "(Required) List of networks (VPCs and subnets)"
-  default     = []
 }
